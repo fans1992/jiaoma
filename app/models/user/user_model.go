@@ -11,15 +11,21 @@ import (
 type User struct {
 	models.BaseModel
 
-	Name string `json:"name,omitempty"`
-
-	City         string `json:"city,omitempty"`
-	Introduction string `json:"introduction,omitempty"`
-	Avatar       string `json:"avatar,omitempty"`
-
-	Email    string `json:"-"`
-	Phone    string `json:"-"`
-	Password string `json:"-"`
+	Name            string `json:"name,omitempty"`
+	NickName        string `json:"nick_name,omitempty"`
+	Email           string `json:"Email,omitempty"`
+	Mobile          string `json:"mobile,omitempty"`
+	Password        string `json:"-"`
+	Status          string `json:"status,omitempty"`
+	Sex             string `json:"sex,omitempty"`
+	Avatar          string `json:"avatar,omitempty"`
+	City            string `json:"city,omitempty"`
+	Address         string `json:"address,omitempty"`
+	Company         string `json:"company,omitempty"`
+	Birthday        string `json:"birthday,omitempty"`
+	RememberToken   string `json:"remember_token,omitempty"`
+	QQ              string `json:"qq,omitempty"`
+	IsWechatManager string `json:"is_wechat_manager,omitempty"`
 
 	models.CommonTimestampsField
 }

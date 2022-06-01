@@ -53,7 +53,7 @@ func (sc *SignupController) SignupUsingPhone(c *gin.Context) {
 	// 2. 验证成功，创建数据
 	userModel := user.User{
 		Name:     request.Name,
-		Phone:    request.Phone,
+		Mobile:    request.Phone,
 		Password: request.Password,
 	}
 	userModel.Create()

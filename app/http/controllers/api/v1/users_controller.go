@@ -45,7 +45,6 @@ func (ctrl *UsersController) UpdateProfile(c *gin.Context) {
 	currentUser := auth.CurrentUser(c)
 	currentUser.Name = request.Name
 	currentUser.City = request.City
-	currentUser.Introduction = request.Introduction
 	rowsAffected := currentUser.Save()
 	if rowsAffected > 0 {
 		response.Data(c, currentUser)
@@ -81,7 +80,7 @@ func (ctrl *UsersController) UpdatePhone(c *gin.Context) {
 	}
 
 	currentUser := auth.CurrentUser(c)
-	currentUser.Phone = request.Phone
+	currentUser.Mobile = request.Mobile
 	rowsAffected := currentUser.Save()
 
 	if rowsAffected > 0 {
