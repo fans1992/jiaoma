@@ -16,6 +16,12 @@ type {{StructName}} struct {
     models.CommonTimestampsField
 }
 
+func ({{StructName}}) TableName() string {
+    // Put table name in here
+    FIXME()
+	return ""
+}
+
 func ({{VariableName}} *{{StructName}}) Create() {
     database.DB.Create(&{{VariableName}})
 }

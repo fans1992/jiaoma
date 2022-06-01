@@ -27,7 +27,7 @@ func Success(c *gin.Context) {
 // 执行『更新操作』成功后调用，例如更新话题，成功后返回已更新的话题
 func Data(c *gin.Context, data interface{}) {
 	JSON(c, gin.H{
-		"success": true,
+		"status": true,
 		"data":    data,
 	})
 }
@@ -108,6 +108,7 @@ func ValidationError(c *gin.Context, errors map[string][]string) {
 	c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{
 		"message": "请求验证不通过，具体请查看 errors",
 		"errors":  errors,
+		"status":  false,
 	})
 }
 

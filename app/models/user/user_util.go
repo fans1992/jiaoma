@@ -24,7 +24,7 @@ func IsPhoneExist(phone string) bool {
 
 // GetByPhone 通过手机号来获取用户
 func GetByPhone(phone string) (userModel User) {
-	database.DB.Where("phone = ?", phone).First(&userModel)
+	database.DB.Where("mobile = ?", phone).First(&userModel)
 	return
 }
 

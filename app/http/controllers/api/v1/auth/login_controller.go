@@ -25,16 +25,17 @@ func (lc *LoginController) LoginByPhone(c *gin.Context) {
 	}
 
 	// 2. 尝试登录
-	user, err := auth.LoginByPhone(request.Phone)
+	user, err := auth.LoginByPhone(request.Mobile)
 	if err != nil {
 		// 失败，显示错误提示
 		response.Error(c, err, "账号不存在或密码错误")
 	} else {
 		// 登录成功
-		token := jwt.NewJWT().IssueToken(user.GetStringID(), user.Name)
+		token:= jwt.NewJWT().IssueToken(user.GetStringID(), user.Name)
 
-		response.JSON(c, gin.H{
-			"token": token,
+		response.Data(c, gin.H{
+			"token_type": "Bearer",
+			"access_token": token,
 		})
 	}
 }

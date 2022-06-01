@@ -30,6 +30,11 @@ type User struct {
 	models.CommonTimestampsField
 }
 
+// TableName 会将 User 的表名重写为 `ibrand_user`
+func (User) TableName() string {
+	return "ibrand_user"
+}
+
 // Create 创建用户，通过 User.ID 来判断是否创建成功
 func (userModel *User) Create() {
 	database.DB.Create(&userModel)
@@ -44,3 +49,5 @@ func (userModel *User) Save() (rowsAffected int64) {
 	result := database.DB.Save(&userModel)
 	return result.RowsAffected
 }
+
+
