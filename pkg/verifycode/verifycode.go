@@ -3,13 +3,13 @@ package verifycode
 
 import (
 	"fmt"
-	"gohub/pkg/app"
-	"gohub/pkg/config"
-	"gohub/pkg/helpers"
-	"gohub/pkg/logger"
-	"gohub/pkg/mail"
-	"gohub/pkg/redis"
-	"gohub/pkg/sms"
+	"github.com/fans1992/jiaoma/pkg/app"
+	"github.com/fans1992/jiaoma/pkg/config"
+	"github.com/fans1992/jiaoma/pkg/helpers"
+	"github.com/fans1992/jiaoma/pkg/logger"
+	"github.com/fans1992/jiaoma/pkg/mail"
+	"github.com/fans1992/jiaoma/pkg/redis"
+	"github.com/fans1992/jiaoma/pkg/sms"
 	"strings"
 	"sync"
 )

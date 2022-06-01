@@ -3,9 +3,9 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	controllers "gohub/app/http/controllers/api/v1"
-	"gohub/app/http/controllers/api/v1/auth"
-	"gohub/app/http/middlewares"
+	controllers "github.com/fans1992/jiaoma/app/http/controllers/api/v1"
+	"github.com/fans1992/jiaoma/app/http/controllers/api/v1/auth"
+	"github.com/fans1992/jiaoma/app/http/middlewares"
 )
 
 // RegisterAPIRoutes 注册 API 相关路由

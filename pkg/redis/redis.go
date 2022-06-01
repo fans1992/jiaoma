@@ -3,7 +3,7 @@ package redis
 
 import (
 	"context"
-	"gohub/pkg/logger"
+	"github.com/fans1992/jiaoma/pkg/logger"
 	"sync"
 	"time"
 

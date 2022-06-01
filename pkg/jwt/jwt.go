@@ -3,9 +3,9 @@ package jwt
 
 import (
 	"errors"
-	"gohub/pkg/app"
-	"gohub/pkg/config"
-	"gohub/pkg/logger"
+	"github.com/fans1992/jiaoma/pkg/app"
+	"github.com/fans1992/jiaoma/pkg/config"
+	"github.com/fans1992/jiaoma/pkg/logger"
 	"strings"
 	"time"
 

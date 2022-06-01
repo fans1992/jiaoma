@@ -3,7 +3,7 @@
 本项目是 [《G02 Go API 实战》](https://learnku.com/courses/go-api/) 实战课程的源码，基于 MIT 协议开源。
 
 
-项目名称 Gohub，以论坛 API 为主题，设计的初衷是将其打造为高性能、功能齐全的 API 框架。
+项目名称 jiaoma，以论坛 API 为主题，设计的初衷是将其打造为高性能、功能齐全的 API 框架。
 
 程序结构说明，请见 [程序结构](https://learnku.com/courses/go-api/1.17/program-structure/11772)。
 
@@ -113,7 +113,7 @@
 
 ## 代码行数
 
-Gohub 项目总共有 4600 行代码（工具 [gocloc](https://github.com/hhatto/gocloc)）：
+jiaoma 项目总共有 4600 行代码（工具 [gocloc](https://github.com/hhatto/gocloc)）：
 
 ```
 $ gocloc .

@@ -1,7 +1,7 @@
 // Package config 站点配置信息
 package config
 
-import "gohub/pkg/config"
+import "github.com/fans1992/jiaoma/pkg/config"
 
 func init() {
 	config.Add("sms", func() map[string]interface{} {

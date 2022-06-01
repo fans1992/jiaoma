@@ -2,7 +2,7 @@ package sms
 
 import (
 	"encoding/json"
-	"gohub/pkg/logger"
+	"github.com/fans1992/jiaoma/pkg/logger"
 
 	aliyunsmsclient "github.com/KenmyZhang/aliyun-communicate"
 )

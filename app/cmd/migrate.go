@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"gohub/database/migrations"
-	"gohub/pkg/migrate"
+	"github.com/fans1992/jiaoma/database/migrations"
+	"github.com/fans1992/jiaoma/pkg/migrate"
 
 	"github.com/spf13/cobra"
 )

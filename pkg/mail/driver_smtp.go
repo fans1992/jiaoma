@@ -2,7 +2,7 @@ package mail
 
 import (
 	"fmt"
-	"gohub/pkg/logger"
+	"github.com/fans1992/jiaoma/pkg/logger"
 	"net/smtp"
 
 	emailPKG "github.com/jordan-wright/email"

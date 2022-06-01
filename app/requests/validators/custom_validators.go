@@ -2,8 +2,8 @@
 package validators
 
 import (
-	"gohub/pkg/captcha"
-	"gohub/pkg/verifycode"
+	"github.com/fans1992/jiaoma/pkg/captcha"
+	"github.com/fans1992/jiaoma/pkg/verifycode"
 )
 
 // ValidateCaptcha 自定义规则，验证『图片验证码』

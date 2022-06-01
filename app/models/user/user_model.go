@@ -2,9 +2,9 @@
 package user
 
 import (
-	"gohub/app/models"
-	"gohub/pkg/database"
-	"gohub/pkg/hash"
+	"github.com/fans1992/jiaoma/app/models"
+	"github.com/fans1992/jiaoma/pkg/database"
+	"github.com/fans1992/jiaoma/pkg/hash"
 )
 
 // User 用户模型

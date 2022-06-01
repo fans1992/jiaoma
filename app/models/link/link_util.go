@@ -1,11 +1,11 @@
 package link
 
 import (
-	"gohub/pkg/app"
-	"gohub/pkg/cache"
-	"gohub/pkg/database"
-	"gohub/pkg/helpers"
-	"gohub/pkg/paginator"
+	"github.com/fans1992/jiaoma/pkg/app"
+	"github.com/fans1992/jiaoma/pkg/cache"
+	"github.com/fans1992/jiaoma/pkg/database"
+	"github.com/fans1992/jiaoma/pkg/helpers"
+	"github.com/fans1992/jiaoma/pkg/paginator"
 	"time"
 
 	"github.com/gin-gonic/gin"

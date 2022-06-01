@@ -1,12 +1,12 @@
 package v1
 
 import (
-	"gohub/app/models/user"
-	"gohub/app/requests"
-	"gohub/pkg/auth"
-	"gohub/pkg/config"
-	"gohub/pkg/file"
-	"gohub/pkg/response"
+	"github.com/fans1992/jiaoma/app/models/user"
+	"github.com/fans1992/jiaoma/app/requests"
+	"github.com/fans1992/jiaoma/pkg/auth"
+	"github.com/fans1992/jiaoma/pkg/config"
+	"github.com/fans1992/jiaoma/pkg/file"
+	"github.com/fans1992/jiaoma/pkg/response"
 
 	"github.com/gin-gonic/gin"
 )

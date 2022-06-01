@@ -1,11 +1,11 @@
 package v1
 
 import (
-	"gohub/app/models/topic"
-	"gohub/app/policies"
-	"gohub/app/requests"
-	"gohub/pkg/auth"
-	"gohub/pkg/response"
+	"github.com/fans1992/jiaoma/app/models/topic"
+	"github.com/fans1992/jiaoma/app/policies"
+	"github.com/fans1992/jiaoma/app/requests"
+	"github.com/fans1992/jiaoma/pkg/auth"
+	"github.com/fans1992/jiaoma/pkg/response"
 
 	"github.com/gin-gonic/gin"
 )

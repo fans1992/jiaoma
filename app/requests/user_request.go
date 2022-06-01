@@ -1,8 +1,8 @@
 package requests
 
 import (
-	"gohub/app/requests/validators"
-	"gohub/pkg/auth"
+	"github.com/fans1992/jiaoma/app/requests/validators"
+	"github.com/fans1992/jiaoma/pkg/auth"
 	"mime/multipart"
 
 	"github.com/gin-gonic/gin"

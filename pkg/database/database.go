@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	"gohub/pkg/config"
+	"github.com/fans1992/jiaoma/pkg/config"
 
 	"gorm.io/gorm"
 	gormlogger "gorm.io/gorm/logger"

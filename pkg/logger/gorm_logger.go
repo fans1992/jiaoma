@@ -3,7 +3,7 @@ package logger
 import (
 	"context"
 	"errors"
-	"gohub/pkg/helpers"
+	"github.com/fans1992/jiaoma/pkg/helpers"
 	"path/filepath"
 	"runtime"
 	"strings"

@@ -1,6 +1,6 @@
 package config
 
-import "gohub/pkg/config"
+import "github.com/fans1992/jiaoma/pkg/config"
 
 func init() {
 	config.Add("log", func() map[string]interface{} {

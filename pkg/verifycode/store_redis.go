@@ -1,9 +1,9 @@
 package verifycode
 
 import (
-	"gohub/pkg/app"
-	"gohub/pkg/config"
-	"gohub/pkg/redis"
+	"github.com/fans1992/jiaoma/pkg/app"
+	"github.com/fans1992/jiaoma/pkg/config"
+	"github.com/fans1992/jiaoma/pkg/redis"
 	"time"
 )
 

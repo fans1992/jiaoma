@@ -2,8 +2,8 @@
 package policies
 
 import (
-	"gohub/app/models/topic"
-	"gohub/pkg/auth"
+	"github.com/fans1992/jiaoma/app/models/topic"
+	"github.com/fans1992/jiaoma/pkg/auth"
 
 	"github.com/gin-gonic/gin"
 )

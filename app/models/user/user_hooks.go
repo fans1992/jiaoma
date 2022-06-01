@@ -1,7 +1,7 @@
 package user
 
 import (
-	"gohub/pkg/hash"
+	"github.com/fans1992/jiaoma/pkg/hash"
 
 	"gorm.io/gorm"
 )

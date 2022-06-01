@@ -1,9 +1,9 @@
 package v1
 
 import (
-	"gohub/app/models/category"
-	"gohub/app/requests"
-	"gohub/pkg/response"
+	"github.com/fans1992/jiaoma/app/models/category"
+	"github.com/fans1992/jiaoma/app/requests"
+	"github.com/fans1992/jiaoma/pkg/response"
 
 	"github.com/gin-gonic/gin"
 )

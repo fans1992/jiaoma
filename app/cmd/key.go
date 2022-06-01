@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"gohub/pkg/console"
-	"gohub/pkg/helpers"
+	"github.com/fans1992/jiaoma/pkg/console"
+	"github.com/fans1992/jiaoma/pkg/helpers"
 
 	"github.com/spf13/cobra"
 )

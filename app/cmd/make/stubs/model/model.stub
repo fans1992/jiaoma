@@ -3,8 +3,8 @@ package {{PackageName}}
 
 import (
 
-    "gohub/pkg/logger"
-    "gohub/pkg/database"
+    "github.com/fans1992/jiaoma/pkg/logger"
+    "github.com/fans1992/jiaoma/pkg/database"
 )
 
 type {{StructName}} struct {

@@ -1,11 +1,11 @@
 package auth
 
 import (
-	v1 "gohub/app/http/controllers/api/v1"
-	"gohub/app/requests"
-	"gohub/pkg/auth"
-	"gohub/pkg/jwt"
-	"gohub/pkg/response"
+	v1 "github.com/fans1992/jiaoma/app/http/controllers/api/v1"
+	"github.com/fans1992/jiaoma/app/requests"
+	"github.com/fans1992/jiaoma/pkg/auth"
+	"github.com/fans1992/jiaoma/pkg/jwt"
+	"github.com/fans1992/jiaoma/pkg/response"
 
 	"github.com/gin-gonic/gin"
 )

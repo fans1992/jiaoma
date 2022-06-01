@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"fmt"
-	"gohub/pkg/cache"
-	"gohub/pkg/console"
+	"github.com/fans1992/jiaoma/pkg/cache"
+	"github.com/fans1992/jiaoma/pkg/console"
 
 	"github.com/spf13/cobra"
 )

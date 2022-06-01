@@ -2,8 +2,8 @@
 package link
 
 import (
-	"gohub/app/models"
-	"gohub/pkg/database"
+	"github.com/fans1992/jiaoma/app/models"
+	"github.com/fans1992/jiaoma/pkg/database"
 )
 
 type Link struct {

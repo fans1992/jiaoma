@@ -1,10 +1,10 @@
 package cmd
 
 import (
-	"gohub/bootstrap"
-	"gohub/pkg/config"
-	"gohub/pkg/console"
-	"gohub/pkg/logger"
+	"github.com/fans1992/jiaoma/bootstrap"
+	"github.com/fans1992/jiaoma/pkg/config"
+	"github.com/fans1992/jiaoma/pkg/console"
+	"github.com/fans1992/jiaoma/pkg/logger"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cobra"

@@ -2,8 +2,8 @@
 package bootstrap
 
 import (
-	"gohub/app/http/middlewares"
-	"gohub/routes"
+	"github.com/fans1992/jiaoma/app/http/middlewares"
+	"github.com/fans1992/jiaoma/routes"
 	"net/http"
 	"strings"
 

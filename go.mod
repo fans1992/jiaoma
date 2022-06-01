@@ -1,4 +1,4 @@
-module gohub
+module github.com/fans1992/jiaoma
 
 go 1.17
 

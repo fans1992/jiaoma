@@ -1,7 +1,7 @@
 package config
 
 import (
-	"gohub/pkg/config"
+	"github.com/fans1992/jiaoma/pkg/config"
 )
 
 func init() {

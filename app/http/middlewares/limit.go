@@ -1,10 +1,10 @@
 package middlewares
 
 import (
-	"gohub/pkg/app"
-	"gohub/pkg/limiter"
-	"gohub/pkg/logger"
-	"gohub/pkg/response"
+	"github.com/fans1992/jiaoma/pkg/app"
+	"github.com/fans1992/jiaoma/pkg/limiter"
+	"github.com/fans1992/jiaoma/pkg/logger"
+	"github.com/fans1992/jiaoma/pkg/response"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

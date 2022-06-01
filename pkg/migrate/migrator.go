@@ -2,9 +2,9 @@
 package migrate
 
 import (
-	"gohub/pkg/console"
-	"gohub/pkg/database"
-	"gohub/pkg/file"
+	"github.com/fans1992/jiaoma/pkg/console"
+	"github.com/fans1992/jiaoma/pkg/database"
+	"github.com/fans1992/jiaoma/pkg/file"
 	"io/ioutil"
 
 	"gorm.io/gorm"

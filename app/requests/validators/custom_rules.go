@@ -4,7 +4,7 @@ package validators
 import (
 	"errors"
 	"fmt"
-	"gohub/pkg/database"
+	"github.com/fans1992/jiaoma/pkg/database"
 	"strconv"
 	"strings"
 	"unicode/utf8"

@@ -1,6 +1,6 @@
 package config
 
-import "gohub/pkg/config"
+import "github.com/fans1992/jiaoma/pkg/config"
 
 func init() {
 	config.Add("captcha", func() map[string]interface{} {

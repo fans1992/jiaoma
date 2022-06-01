@@ -1,8 +1,8 @@
 package middlewares
 
 import (
-	"gohub/pkg/logger"
-	"gohub/pkg/response"
+	"github.com/fans1992/jiaoma/pkg/logger"
+	"github.com/fans1992/jiaoma/pkg/response"
 	"net"
 	"net/http/httputil"
 	"os"

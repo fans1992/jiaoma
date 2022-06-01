@@ -2,12 +2,12 @@ package main
 
 import (
 	"fmt"
-	"gohub/app/cmd"
-	"gohub/app/cmd/make"
-	"gohub/bootstrap"
-	btsConfig "gohub/config"
-	"gohub/pkg/config"
-	"gohub/pkg/console"
+	"github.com/fans1992/jiaoma/app/cmd"
+	"github.com/fans1992/jiaoma/app/cmd/make"
+	"github.com/fans1992/jiaoma/bootstrap"
+	btsConfig "github.com/fans1992/jiaoma/config"
+	"github.com/fans1992/jiaoma/pkg/config"
+	"github.com/fans1992/jiaoma/pkg/console"
 	"os"
 
 	"github.com/spf13/cobra"

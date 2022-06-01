@@ -3,8 +3,8 @@ package middlewares
 
 import (
 	"bytes"
-	"gohub/pkg/helpers"
-	"gohub/pkg/logger"
+	"github.com/fans1992/jiaoma/pkg/helpers"
+	"github.com/fans1992/jiaoma/pkg/logger"
 	"io/ioutil"
 	"time"
 

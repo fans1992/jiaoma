@@ -2,7 +2,7 @@
 package sms
 
 import (
-	"gohub/pkg/config"
+	"github.com/fans1992/jiaoma/pkg/config"
 	"sync"
 )
 

@@ -4,9 +4,9 @@ package make
 import (
 	"embed"
 	"fmt"
-	"gohub/pkg/console"
-	"gohub/pkg/file"
-	"gohub/pkg/str"
+	"github.com/fans1992/jiaoma/pkg/console"
+	"github.com/fans1992/jiaoma/pkg/file"
+	"github.com/fans1992/jiaoma/pkg/str"
 	"strings"
 
 	"github.com/iancoleman/strcase"

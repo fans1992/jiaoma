@@ -2,7 +2,7 @@
 package cmd
 
 import (
-	"gohub/pkg/helpers"
+	"github.com/fans1992/jiaoma/pkg/helpers"
 	"os"
 
 	"github.com/spf13/cobra"

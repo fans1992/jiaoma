@@ -3,9 +3,9 @@ package file
 
 import (
 	"fmt"
-	"gohub/pkg/app"
-	"gohub/pkg/auth"
-	"gohub/pkg/helpers"
+	"github.com/fans1992/jiaoma/pkg/app"
+	"github.com/fans1992/jiaoma/pkg/auth"
+	"github.com/fans1992/jiaoma/pkg/helpers"
 	"io/ioutil"
 	"mime/multipart"
 	"os"
