@@ -2,6 +2,7 @@ package auth
 
 import (
 	v1 "github.com/fans1992/jiaoma/app/http/controllers/api/v1"
+	"github.com/fans1992/jiaoma/app/models/user_bind"
 	"github.com/fans1992/jiaoma/app/requests"
 	"github.com/fans1992/jiaoma/pkg/auth"
 	"github.com/fans1992/jiaoma/pkg/jwt"
@@ -25,19 +26,22 @@ func (lc *LoginController) LoginByPhone(c *gin.Context) {
 	}
 
 	// 2. 尝试登录
-	user, err := auth.LoginByPhone(request.Mobile)
+	user, isNewUser, err := auth.LoginByMobile(request.Mobile)
 	if err != nil {
 		// 失败，显示错误提示
 		response.Error(c, err, "账号不存在或密码错误")
-	} else {
-		// 登录成功
-		token:= jwt.NewJWT().IssueToken(user.GetStringID(), user.Name)
-
-		response.Data(c, gin.H{
-			"token_type": "Bearer",
-			"access_token": token,
-		})
+		return
 	}
+
+	// 登录成功
+	token := jwt.NewJWT().IssueToken(user.GetStringID(), user.Name)
+
+	response.Data(c, gin.H{
+		"token_type":   "Bearer",
+		"access_token": token,
+		"wechat_user":  user_bind.IsWechatUser(user.ID),
+		"is_new_user":  isNewUser,
+	})
 }
 
 // LoginByPassword 多种方法登录，支持手机号、email 和用户名

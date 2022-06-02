@@ -24,7 +24,7 @@ func (pc *PasswordController) ResetByPhone(c *gin.Context) {
 	}
 
 	// 2. 更新密码
-	userModel := user.GetByPhone(request.Phone)
+	userModel := user.GetByMobile(request.Phone)
 	if userModel.ID == 0 {
 		response.Abort404(c)
 	} else {

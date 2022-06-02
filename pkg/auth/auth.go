@@ -23,14 +23,23 @@ func Attempt(email string, password string) (user.User, error) {
 	return userModel, nil
 }
 
-// LoginByPhone 登录指定用户
-func LoginByPhone(phone string) (user.User, error) {
-	userModel := user.GetByPhone(phone)
+// LoginByMobile  登录指定用户
+func LoginByMobile(mobile string) (user.User, bool, error) {
+	userModel := user.GetByMobile(mobile)
 	if userModel.ID == 0 {
-		return user.User{}, errors.New("手机号未注册")
+		// 创建用户
+		userModel = user.User{
+			Mobile: mobile,
+		}
+		userModel.Create()
+		if userModel.ID > 0 {
+			return userModel, true, nil
+		} else {
+			return user.User{}, true, errors.New("创建用户失败，请稍后尝试~")
+		}
 	}
 
-	return userModel, nil
+	return userModel, false, nil
 }
 
 // CurrentUser 从 gin.context 中获取当前登录用户

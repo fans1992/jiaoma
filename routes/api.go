@@ -34,7 +34,6 @@ func RegisterAPIRoutes(r *gin.Engine) {
 			lgc := new(auth.LoginController)
 			//短信登录
 			oauthGroup.POST("/sms", middlewares.GuestJWT(), lgc.LoginByPhone)
-			oauthGroup.POST("/login/using-password", middlewares.GuestJWT(), lgc.LoginByPassword)
 			oauthGroup.POST("/login/refresh-token", middlewares.AuthJWT(), lgc.RefreshToken)
 
 			// 重置密码

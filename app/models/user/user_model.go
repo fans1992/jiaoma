@@ -16,7 +16,6 @@ type User struct {
 	Email           string `json:"Email,omitempty"`
 	Mobile          string `json:"mobile,omitempty"`
 	Password        string `json:"-"`
-	Status          string `json:"status,omitempty"`
 	Sex             string `json:"sex,omitempty"`
 	Avatar          string `json:"avatar,omitempty"`
 	City            string `json:"city,omitempty"`
@@ -25,7 +24,6 @@ type User struct {
 	Birthday        string `json:"birthday,omitempty"`
 	RememberToken   string `json:"remember_token,omitempty"`
 	QQ              string `json:"qq,omitempty"`
-	IsWechatManager string `json:"is_wechat_manager,omitempty"`
 
 	models.CommonTimestampsField
 }
