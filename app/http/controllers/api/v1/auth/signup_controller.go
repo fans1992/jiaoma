@@ -30,16 +30,6 @@ func (sc *SignupController) IsPhoneExist(c *gin.Context) {
 	})
 }
 
-// IsEmailExist 检测邮箱是否已注册
-func (sc *SignupController) IsEmailExist(c *gin.Context) {
-	request := requests.SignupEmailExistRequest{}
-	if ok := requests.Validate(c, &request, requests.SignupEmailExist); !ok {
-		return
-	}
-	response.JSON(c, gin.H{
-		"exist": user.IsEmailExist(request.Email),
-	})
-}
 
 // SignupUsingPhone 使用手机和验证码进行注册
 func (sc *SignupController) SignupUsingPhone(c *gin.Context) {
@@ -52,47 +42,21 @@ func (sc *SignupController) SignupUsingPhone(c *gin.Context) {
 
 	// 2. 验证成功，创建数据
 	userModel := user.User{
-		Name:     request.Name,
-		Mobile:    request.Phone,
+		Mobile:   request.Mobile,
 		Password: request.Password,
 	}
 	userModel.Create()
 
 	if userModel.ID > 0 {
-		token := jwt.NewJWT().IssueToken(userModel.GetStringID(), userModel.Name)
-		response.CreatedJSON(c, gin.H{
-			"token": token,
-			"data":  userModel,
+		token := jwt.NewJWT().IssueToken(userModel.GetStringID())
+		response.Created(c, gin.H{
+			"token_type":   "Bearer",
+			"access_token": token,
+			"wechat_user":  false,
 		})
-	} else {
-		response.Abort500(c, "创建用户失败，请稍后尝试~")
-	}
-}
-
-// SignupUsingEmail 使用 Email + 验证码进行注册
-func (sc *SignupController) SignupUsingEmail(c *gin.Context) {
-
-	// 1. 验证表单
-	request := requests.SignupUsingEmailRequest{}
-	if ok := requests.Validate(c, &request, requests.SignupUsingEmail); !ok {
 		return
 	}
 
-	// 2. 验证成功，创建数据
-	userModel := user.User{
-		Name:     request.Name,
-		Email:    request.Email,
-		Password: request.Password,
-	}
-	userModel.Create()
-
-	if userModel.ID > 0 {
-		token := jwt.NewJWT().IssueToken(userModel.GetStringID(), userModel.Name)
-		response.CreatedJSON(c, gin.H{
-			"token": token,
-			"data":  userModel,
-		})
-	} else {
-		response.Abort500(c, "创建用户失败，请稍后尝试~")
-	}
+	response.Abort500(c, "创建用户失败，请稍后尝试~")
 }
+

@@ -28,7 +28,7 @@ func Success(c *gin.Context) {
 func Data(c *gin.Context, data interface{}) {
 	JSON(c, gin.H{
 		"status": true,
-		"data":    data,
+		"data":   data,
 	})
 }
 
@@ -36,8 +36,8 @@ func Data(c *gin.Context, data interface{}) {
 // 执行『更新操作』成功后调用，例如更新话题，成功后返回已更新的话题
 func Created(c *gin.Context, data interface{}) {
 	c.JSON(http.StatusCreated, gin.H{
-		"success": true,
-		"data":    data,
+		"status": true,
+		"data":   data,
 	})
 }
 

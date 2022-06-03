@@ -34,7 +34,7 @@ func (lc *LoginController) LoginByPhone(c *gin.Context) {
 	}
 
 	// 登录成功
-	token := jwt.NewJWT().IssueToken(user.GetStringID(), user.Name)
+	token := jwt.NewJWT().IssueToken(user.GetStringID())
 
 	response.Data(c, gin.H{
 		"token_type":   "Bearer",
@@ -59,7 +59,7 @@ func (lc *LoginController) LoginByPassword(c *gin.Context) {
 		response.Unauthorized(c, "登录失败")
 
 	} else {
-		token := jwt.NewJWT().IssueToken(user.GetStringID(), user.Name)
+		token := jwt.NewJWT().IssueToken(user.GetStringID())
 		response.JSON(c, gin.H{
 			"token": token,
 		})

@@ -35,7 +35,6 @@ type JWT struct {
 // JWTCustomClaims 自定义载荷
 type JWTCustomClaims struct {
 	UserID       string `json:"user_id"`
-	UserName     string `json:"user_name"`
 	ExpireAtTime int64  `json:"expire_time"`
 
 	// StandardClaims 结构体实现了 Claims 接口继承了  Valid() 方法
@@ -125,13 +124,12 @@ func (jwt *JWT) RefreshToken(c *gin.Context) (string, error) {
 }
 
 // IssueToken 生成  Token，在登录成功时调用
-func (jwt *JWT) IssueToken(userID string, userName string) string {
+func (jwt *JWT) IssueToken(userID string) string {
 
 	// 1. 构造用户 claims 信息(负荷)
 	expireAtTime := jwt.expireAtTime()
 	claims := JWTCustomClaims{
 		userID,
-		userName,
 		expireAtTime,
 		jwtpkg.StandardClaims{
 			NotBefore: app.TimenowInTimezone().Unix(), // 签名生效时间

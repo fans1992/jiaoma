@@ -11,19 +11,19 @@ import (
 type User struct {
 	models.BaseModel
 
-	Name            string `json:"name,omitempty"`
-	NickName        string `json:"nick_name,omitempty"`
-	Email           string `json:"Email,omitempty"`
-	Mobile          string `json:"mobile,omitempty"`
-	Password        string `json:"-"`
-	Sex             string `json:"sex,omitempty"`
-	Avatar          string `json:"avatar,omitempty"`
-	City            string `json:"city,omitempty"`
-	Address         string `json:"address,omitempty"`
-	Company         string `json:"company,omitempty"`
-	Birthday        string `json:"birthday,omitempty"`
-	RememberToken   string `json:"remember_token,omitempty"`
-	QQ              string `json:"qq,omitempty"`
+	Name          *string `json:"name,omitempty"`
+	NickName      string `json:"nick_name,omitempty"`
+	Email         *string `json:"Email,omitempty"`
+	Mobile        string `json:"mobile,omitempty"`
+	Password      string `json:"-"`
+	Sex           string `json:"sex,omitempty"`
+	Avatar        string `json:"avatar,omitempty"`
+	City          string `json:"city,omitempty"`
+	Address       string `json:"address,omitempty"`
+	Company       string `json:"company,omitempty"`
+	Birthday      string `json:"birthday,omitempty"`
+	RememberToken string `json:"remember_token,omitempty"`
+	QQ            string `json:"qq,omitempty"`
 
 	models.CommonTimestampsField
 }
@@ -47,5 +47,3 @@ func (userModel *User) Save() (rowsAffected int64) {
 	result := database.DB.Save(&userModel)
 	return result.RowsAffected
 }
-
-

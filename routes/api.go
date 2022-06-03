@@ -32,25 +32,21 @@ func RegisterAPIRoutes(r *gin.Engine) {
 		oauthGroup.Use(middlewares.LimitIP("1000-H"))
 		{
 			lgc := new(auth.LoginController)
-			//短信登录
+			// 短信登录
 			oauthGroup.POST("/sms", middlewares.GuestJWT(), lgc.LoginByPhone)
+
+			suc := new(auth.SignupController)
+			// 注册用户
+			oauthGroup.POST("/signup", middlewares.GuestJWT(), suc.SignupUsingPhone)
+			//oauthGroup.POST("/signup/phone/exist", middlewares.GuestJWT(), middlewares.LimitPerRoute("60-H"), suc.IsPhoneExist)
+
 			oauthGroup.POST("/login/refresh-token", middlewares.AuthJWT(), lgc.RefreshToken)
 
 			// 重置密码
 			pwc := new(auth.PasswordController)
-			oauthGroup.POST("/password-reset/using-email", middlewares.GuestJWT(), pwc.ResetByEmail)
 			oauthGroup.POST("/password-reset/using-phone", middlewares.GuestJWT(), pwc.ResetByPhone)
 
-			// 注册用户
-			suc := new(auth.SignupController)
-			oauthGroup.POST("/signup/using-phone", middlewares.GuestJWT(), suc.SignupUsingPhone)
-			oauthGroup.POST("/signup/using-email", middlewares.GuestJWT(), suc.SignupUsingEmail)
-			oauthGroup.POST("/signup/phone/exist", middlewares.GuestJWT(), middlewares.LimitPerRoute("60-H"), suc.IsPhoneExist)
-			oauthGroup.POST("/signup/email/exist", middlewares.GuestJWT(), middlewares.LimitPerRoute("60-H"), suc.IsEmailExist)
 
-			// 发送验证码
-			vcc := new(auth.VerifyCodeController)
-			oauthGroup.POST("/verify-codes/email", middlewares.LimitPerRoute("20-H"), vcc.SendUsingEmail)
 		}
 
 		uc := new(controllers.UsersController)
@@ -60,25 +56,24 @@ func RegisterAPIRoutes(r *gin.Engine) {
 		usersGroup := v1.Group("/users")
 		{
 			usersGroup.GET("", uc.Index)
-			usersGroup.PUT("", middlewares.AuthJWT(), uc.UpdateProfile)
-			usersGroup.PUT("/email", middlewares.AuthJWT(), uc.UpdateEmail)
+			//usersGroup.PUT("", middlewares.AuthJWT(), uc.UpdateProfile)
 			usersGroup.PUT("/phone", middlewares.AuthJWT(), uc.UpdatePhone)
-			usersGroup.PUT("/password", middlewares.AuthJWT(), uc.UpdatePassword)
+			//usersGroup.PUT("/password", middlewares.AuthJWT(), uc.UpdatePassword)
 			usersGroup.PUT("/avatar", middlewares.AuthJWT(), uc.UpdateAvatar)
 		}
 
+		cgc := new(controllers.CategoriesController)
 		cgcGroup := v1.Group("/categories")
 		{
-			cgc := new(controllers.CategoriesController)
 			cgcGroup.GET("", cgc.Index)
 			cgcGroup.POST("", middlewares.AuthJWT(), cgc.Store)
 			cgcGroup.PUT("/:id", middlewares.AuthJWT(), cgc.Update)
 			cgcGroup.DELETE("/:id", middlewares.AuthJWT(), cgc.Delete)
 		}
 
+		tpc := new(controllers.TopicsController)
 		tpcGroup := v1.Group("/topics")
 		{
-			tpc := new(controllers.TopicsController)
 			tpcGroup.GET("", tpc.Index)
 			tpcGroup.POST("", middlewares.AuthJWT(), tpc.Store)
 			tpcGroup.PUT("/:id", middlewares.AuthJWT(), tpc.Update)
@@ -86,9 +81,9 @@ func RegisterAPIRoutes(r *gin.Engine) {
 			tpcGroup.GET("/:id", tpc.Show)
 		}
 
+		lsc := new(controllers.LinksController)
 		linksGroup := v1.Group("/links")
 		{
-			lsc := new(controllers.LinksController)
 			linksGroup.GET("", lsc.Index)
 		}
 	}
