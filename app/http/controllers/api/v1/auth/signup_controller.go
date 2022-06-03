@@ -25,11 +25,10 @@ func (sc *SignupController) IsPhoneExist(c *gin.Context) {
 	}
 
 	//  检查数据库并返回响应
-	response.JSON(c, gin.H{
-		"exist": user.IsPhoneExist(request.Phone),
+	response.Data(c, gin.H{
+		"is_new_user": !user.IsPhoneExist(request.Mobile),
 	})
 }
-
 
 // SignupUsingPhone 使用手机和验证码进行注册
 func (sc *SignupController) SignupUsingPhone(c *gin.Context) {

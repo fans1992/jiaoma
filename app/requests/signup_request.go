@@ -9,17 +9,17 @@ import (
 )
 
 type SignupPhoneExistRequest struct {
-	Phone string `json:"phone,omitempty" valid:"phone"`
+	Mobile    string `valid:"mobile" form:"mobile"`
 }
 
 func SignupPhoneExist(data interface{}, c *gin.Context) map[string][]string {
 	// 自定义验证规则
 	rules := govalidator.MapData{
-		"phone": []string{"required", "digits:11"},
+		"mobile": []string{"required", "digits:11"},
 	}
 	// 自定义验证出错时的提示
 	messages := govalidator.MapData{
-		"phone": []string{
+		"mobile": []string{
 			"required:手机号为必填项，参数名称 phone",
 			"digits:手机号长度必须为 11 位的数字",
 		},

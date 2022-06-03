@@ -40,12 +40,11 @@ func RegisterAPIRoutes(r *gin.Engine) {
 			suc := new(auth.SignupController)
 			// 注册用户
 			oauthGroup.POST("/signup", middlewares.GuestJWT(), suc.SignupUsingPhone)
-			//oauthGroup.POST("/signup/phone/exist", middlewares.GuestJWT(), middlewares.LimitPerRoute("60-H"), suc.IsPhoneExist)
+			oauthGroup.GET("/sms/is_new", middlewares.GuestJWT(), middlewares.LimitPerRoute("60-H"), suc.IsPhoneExist)
 
 			// 重置密码
 			pwc := new(auth.PasswordController)
 			oauthGroup.POST("/password-reset/using-phone", middlewares.GuestJWT(), pwc.ResetByPhone)
-
 		}
 
 		uc := new(controllers.UsersController)

@@ -18,11 +18,11 @@ func IsEmailExist(email string) bool {
 // IsPhoneExist 判断手机号已被注册
 func IsPhoneExist(phone string) bool {
 	var count int64
-	database.DB.Model(User{}).Where("phone = ?", phone).Count(&count)
+	database.DB.Model(User{}).Where("Mobile = ?", phone).Count(&count)
 	return count > 0
 }
 
-// GetByPhone 通过手机号来获取用户
+// GetByMobile 通过手机号来获取用户
 func GetByMobile(mobile string) (userModel User) {
 	database.DB.Where("mobile = ?", mobile).First(&userModel)
 	return
