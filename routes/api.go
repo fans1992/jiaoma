@@ -22,8 +22,8 @@ func RegisterAPIRoutes(r *gin.Engine) {
 	v1.Use(middlewares.LimitIP("200-H"))
 
 	{
-		//短信验证码
 		vcc := new(auth.VerifyCodeController)
+		//短信验证码
 		v1.POST("/sms/verify-code", middlewares.LimitPerRoute("20-H"), vcc.SendUsingPhone)
 
 		oauthGroup := v1.Group("/oauth")
@@ -34,18 +34,17 @@ func RegisterAPIRoutes(r *gin.Engine) {
 			lgc := new(auth.LoginController)
 			// 短信登录
 			oauthGroup.POST("/sms", middlewares.GuestJWT(), lgc.LoginByPhone)
+			// 账号密码登录
+			oauthGroup.POST("/login", middlewares.GuestJWT(), lgc.LoginByPassword)
 
 			suc := new(auth.SignupController)
 			// 注册用户
 			oauthGroup.POST("/signup", middlewares.GuestJWT(), suc.SignupUsingPhone)
 			//oauthGroup.POST("/signup/phone/exist", middlewares.GuestJWT(), middlewares.LimitPerRoute("60-H"), suc.IsPhoneExist)
 
-			oauthGroup.POST("/login/refresh-token", middlewares.AuthJWT(), lgc.RefreshToken)
-
 			// 重置密码
 			pwc := new(auth.PasswordController)
 			oauthGroup.POST("/password-reset/using-phone", middlewares.GuestJWT(), pwc.ResetByPhone)
-
 
 		}
 

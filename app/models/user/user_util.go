@@ -31,7 +31,7 @@ func GetByMobile(mobile string) (userModel User) {
 // GetByMulti 通过 手机号/Email/用户名 来获取用户
 func GetByMulti(loginID string) (userModel User) {
 	database.DB.
-		Where("phone = ?", loginID).
+		Where("mobile = ?", loginID).
 		Or("email = ?", loginID).
 		Or("name = ?", loginID).
 		First(&userModel)

@@ -53,15 +53,17 @@ func (lc *LoginController) LoginByPassword(c *gin.Context) {
 	}
 
 	// 2. 尝试登录
-	user, err := auth.Attempt(request.LoginID, request.Password)
+	user, err := auth.Attempt(request.Mobile, request.Password)
 	if err != nil {
 		// 失败，显示错误提示
 		response.Unauthorized(c, "登录失败")
 
 	} else {
 		token := jwt.NewJWT().IssueToken(user.GetStringID())
-		response.JSON(c, gin.H{
-			"token": token,
+		response.Data(c, gin.H{
+			"token_type":   "Bearer",
+			"access_token": token,
+			"wechat_user":  user_bind.IsWechatUser(user.ID),
 		})
 	}
 }

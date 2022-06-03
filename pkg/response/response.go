@@ -116,6 +116,7 @@ func ValidationError(c *gin.Context, errors map[string][]string) {
 // 登录失败、jwt 解析失败时调用
 func Unauthorized(c *gin.Context, msg ...string) {
 	c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
+		"status":  false,
 		"message": defaultMessage("请求解析错误，请确认请求格式是否正确。上传文件请使用 multipart 标头，参数请使用 JSON 格式。", msg...),
 	})
 }
