@@ -1,7 +1,6 @@
 package v1
 
 import (
-	"github.com/fans1992/jiaoma/app/models/user"
 	"github.com/fans1992/jiaoma/app/requests"
 	"github.com/fans1992/jiaoma/pkg/auth"
 	"github.com/fans1992/jiaoma/pkg/config"
@@ -21,19 +20,6 @@ func (ctrl *UsersController) CurrentUser(c *gin.Context) {
 	response.Data(c, userModel)
 }
 
-// Index 所有用户
-func (ctrl *UsersController) Index(c *gin.Context) {
-	request := requests.PaginationRequest{}
-	if ok := requests.Validate(c, &request, requests.Pagination); !ok {
-		return
-	}
-
-	data, pager := user.Paginate(c, 10)
-	response.JSON(c, gin.H{
-		"data":  data,
-		"pager": pager,
-	})
-}
 
 //func (ctrl *UsersController) UpdateProfile(c *gin.Context) {
 //

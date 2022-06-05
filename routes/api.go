@@ -49,40 +49,14 @@ func RegisterAPIRoutes(r *gin.Engine) {
 
 		uc := new(controllers.UsersController)
 		// 获取当前用户
-		v1.GET("/user", middlewares.AuthJWT(), uc.CurrentUser)
+		v1.GET("/me", middlewares.AuthJWT(), uc.CurrentUser)
 
 		usersGroup := v1.Group("/users")
 		{
-			usersGroup.GET("", uc.Index)
 			//usersGroup.PUT("", middlewares.AuthJWT(), uc.UpdateProfile)
 			usersGroup.PUT("/phone", middlewares.AuthJWT(), uc.UpdatePhone)
 			//usersGroup.PUT("/password", middlewares.AuthJWT(), uc.UpdatePassword)
 			usersGroup.PUT("/avatar", middlewares.AuthJWT(), uc.UpdateAvatar)
-		}
-
-		cgc := new(controllers.CategoriesController)
-		cgcGroup := v1.Group("/categories")
-		{
-			cgcGroup.GET("", cgc.Index)
-			cgcGroup.POST("", middlewares.AuthJWT(), cgc.Store)
-			cgcGroup.PUT("/:id", middlewares.AuthJWT(), cgc.Update)
-			cgcGroup.DELETE("/:id", middlewares.AuthJWT(), cgc.Delete)
-		}
-
-		tpc := new(controllers.TopicsController)
-		tpcGroup := v1.Group("/topics")
-		{
-			tpcGroup.GET("", tpc.Index)
-			tpcGroup.POST("", middlewares.AuthJWT(), tpc.Store)
-			tpcGroup.PUT("/:id", middlewares.AuthJWT(), tpc.Update)
-			tpcGroup.DELETE("/:id", middlewares.AuthJWT(), tpc.Delete)
-			tpcGroup.GET("/:id", tpc.Show)
-		}
-
-		lsc := new(controllers.LinksController)
-		linksGroup := v1.Group("/links")
-		{
-			linksGroup.GET("", lsc.Index)
 		}
 	}
 }
