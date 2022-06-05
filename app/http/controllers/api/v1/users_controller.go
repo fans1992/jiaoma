@@ -20,25 +20,24 @@ func (ctrl *UsersController) CurrentUser(c *gin.Context) {
 	response.Data(c, userModel)
 }
 
+func (ctrl *UsersController) UpdateProfile(c *gin.Context) {
 
-//func (ctrl *UsersController) UpdateProfile(c *gin.Context) {
-//
-//	request := requests.UserUpdateProfileRequest{}
-//	if ok := requests.Validate(c, &request, requests.UserUpdateProfile); !ok {
-//		return
-//	}
-//
-//	currentUser := auth.CurrentUser(c)
-//	currentUser.Name = request.Name
-//	currentUser.City = request.City
-//	rowsAffected := currentUser.Save()
-//	if rowsAffected > 0 {
-//		response.Data(c, currentUser)
-//	} else {
-//		response.Abort500(c, "更新失败，请稍后尝试~")
-//	}
-//}
+	request := requests.UserUpdateProfileRequest{}
+	if ok := requests.Validate(c, &request, requests.UserUpdateProfile); !ok {
+		return
+	}
 
+	currentUser := auth.CurrentUser(c)
+	currentUser.NickName = request.NickName
+	currentUser.Sex = request.Sex
+	currentUser.Address = request.Address
+	rowsAffected := currentUser.Save()
+	if rowsAffected > 0 {
+		response.Data(c, currentUser)
+	} else {
+		response.Abort500(c, "更新失败，请稍后尝试~")
+	}
+}
 
 func (ctrl *UsersController) UpdatePhone(c *gin.Context) {
 
