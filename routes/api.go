@@ -44,7 +44,7 @@ func RegisterAPIRoutes(r *gin.Engine) {
 
 			// 重置密码
 			pwc := new(auth.PasswordController)
-			oauthGroup.POST("/password-reset/using-phone", middlewares.GuestJWT(), pwc.ResetByPhone)
+			oauthGroup.POST("/password/reset", middlewares.GuestJWT(), pwc.ResetByPhone)
 		}
 
 		uc := new(controllers.UsersController)

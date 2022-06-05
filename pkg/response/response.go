@@ -18,7 +18,7 @@ func JSON(c *gin.Context, data interface{}) {
 // 执行某个『没有具体返回数据』的『变更』操作成功后调用，例如删除、修改密码、修改手机号
 func Success(c *gin.Context) {
 	JSON(c, gin.H{
-		"success": true,
+		"status":  true,
 		"message": "操作成功！",
 	})
 }
@@ -49,6 +49,7 @@ func CreatedJSON(c *gin.Context, data interface{}) {
 // Abort404 响应 404，未传参 msg 时使用默认消息
 func Abort404(c *gin.Context, msg ...string) {
 	c.AbortWithStatusJSON(http.StatusNotFound, gin.H{
+		"status":  false,
 		"message": defaultMessage("数据不存在，请确定请求正确", msg...),
 	})
 }
@@ -56,6 +57,7 @@ func Abort404(c *gin.Context, msg ...string) {
 // Abort403 响应 403，未传参 msg 时使用默认消息
 func Abort403(c *gin.Context, msg ...string) {
 	c.AbortWithStatusJSON(http.StatusForbidden, gin.H{
+		"status":  false,
 		"message": defaultMessage("权限不足，请确定您有对应的权限", msg...),
 	})
 }
@@ -63,6 +65,7 @@ func Abort403(c *gin.Context, msg ...string) {
 // Abort500 响应 500，未传参 msg 时使用默认消息
 func Abort500(c *gin.Context, msg ...string) {
 	c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
+		"status":  false,
 		"message": defaultMessage("服务器内部错误，请稍后再试", msg...),
 	})
 }
@@ -72,6 +75,7 @@ func Abort500(c *gin.Context, msg ...string) {
 func BadRequest(c *gin.Context, err error, msg ...string) {
 	logger.LogIf(err)
 	c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
+		"status":  false,
 		"message": defaultMessage("请求解析错误，请确认请求格式是否正确。上传文件请使用 multipart 标头，参数请使用 JSON 格式。", msg...),
 		"error":   err.Error(),
 	})
