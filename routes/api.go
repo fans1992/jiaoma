@@ -75,6 +75,7 @@ func RegisterAPIRoutes(r *gin.Engine) {
 		contactGroup := v1.Group("/contacts")
 		{
 			contactGroup.POST("", middlewares.AuthJWT(), contact.Store)
+			contactGroup.PUT("/:id", middlewares.AuthJWT(), contact.Update)
 		}
 	}
 }

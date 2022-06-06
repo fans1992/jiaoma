@@ -10,6 +10,7 @@ type ContactRequest struct {
 	Mobile       string `valid:"mobile" json:"mobile,omitempty"`
 	ContactEmail string `valid:"contact_email" json:"contact_email,omitempty"`
 	Address      string `valid:"address" json:"address,omitempty"`
+	IsDefault    int `valid:"is_default" json:"is_default,omitempty"`
 }
 
 func ContactSave(data interface{}, c *gin.Context) map[string][]string {
@@ -19,6 +20,7 @@ func ContactSave(data interface{}, c *gin.Context) map[string][]string {
 		"mobile":        []string{"required", "digits:11"},
 		"contact_email": []string{"required", "min:4", "max:30", "email"},
 		"address":       []string{"required", "min_cn:3", "max_cn:40"},
+		"is_default":    []string{"in:0,1"},
 	}
 	messages := govalidator.MapData{
 		"name": []string{
@@ -40,6 +42,9 @@ func ContactSave(data interface{}, c *gin.Context) map[string][]string {
 			"required:帖子标题为必填项",
 			"min_cn:标题长度需大于 3",
 			"max_cn:标题长度需小于 40",
+		},
+		"is_default": []string{
+			"in:is_default 只能为 0 或者 1",
 		},
 	}
 	return validate(data, rules, messages)

@@ -14,12 +14,12 @@ type Contact struct {
 	AcceptName   string `json:"accept_name,omitempty"`
 	Mobile       string `json:"mobile,omitempty"`
 	ContactEmail string `json:"contact_email,omitempty"`
-	Province     *int16 `json:"province,omitempty"`
-	City         *int16 `json:"city,omitempty"`
-	Area         *int16 `json:"area,omitempty"`
+	Province     *int   `json:"province,omitempty"`
+	City         *int   `json:"city,omitempty"`
+	Area         *int   `json:"area,omitempty"`
 	AddressName  string `json:"address_name,omitempty"`
 	Address      string `json:"address,omitempty"`
-	IsDefault    int8   `json:"is_default,omitempty"`
+	IsDefault    int    `json:"is_default"`
 
 	// 通过 user_id 关联用户
 	User user.User `json:"user"`

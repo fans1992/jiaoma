@@ -2,6 +2,7 @@ package v1
 
 import (
 	"github.com/fans1992/jiaoma/app/models/contact"
+	"github.com/fans1992/jiaoma/app/policies"
 	"github.com/fans1992/jiaoma/app/requests"
 	"github.com/fans1992/jiaoma/pkg/auth"
 	"github.com/fans1992/jiaoma/pkg/response"
@@ -50,39 +51,38 @@ func (ctrl *ContactsController) Store(c *gin.Context) {
 	}
 }
 
-//
-//func (ctrl *ContactsController) Update(c *gin.Context) {
-//
-//    contactModel := contact.Get(c.Param("id"))
-//    if contactModel.ID == 0 {
-//        response.Abort404(c)
-//        return
-//    }
-//
-//    if ok := policies.CanModifyContact(c, contactModel); !ok {
-//        response.Abort403(c)
-//        return
-//    }
-//
-//    request := requests.ContactRequest{}
-//    bindOk, errs := requests.Validate(c, &request, requests.ContactSave)
-//    if !bindOk {
-//        return
-//    }
-//    if len(errs) > 0 {
-//        response.ValidationError(c, 20101, errs)
-//        return
-//    }
-//
-//    contactModel.FieldName = request.FieldName
-//    rowsAffected := contactModel.Save()
-//    if rowsAffected > 0 {
-//        response.Data(c, contactModel)
-//    } else {
-//        response.Abort500(c, "更新失败，请稍后尝试~")
-//    }
-//}
-//
+func (ctrl *ContactsController) Update(c *gin.Context) {
+
+	contactModel := contact.Get(c.Param("id"))
+	if contactModel.ID == 0 {
+		response.Abort404(c)
+		return
+	}
+
+	if ok := policies.CanModifyContact(c, contactModel); !ok {
+		response.Abort403(c)
+		return
+	}
+
+	request := requests.ContactRequest{}
+	if ok := requests.Validate(c, &request, requests.ContactSave); !ok {
+		return
+	}
+
+	contactModel.AcceptName = request.AcceptName
+	contactModel.Mobile = request.Mobile
+	contactModel.ContactEmail = request.ContactEmail
+	contactModel.Address = request.Address
+	contactModel.IsDefault = request.IsDefault
+
+	rowsAffected := contactModel.Save()
+	if rowsAffected > 0 {
+		response.Data(c, contactModel)
+	} else {
+		response.Abort500(c, "更新失败，请稍后尝试~")
+	}
+}
+
 //func (ctrl *ContactsController) Delete(c *gin.Context) {
 //
 //    contactModel := contact.Get(c.Param("id"))
