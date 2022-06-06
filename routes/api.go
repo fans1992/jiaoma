@@ -57,6 +57,7 @@ func RegisterAPIRoutes(r *gin.Engine) {
 			usersGroup.POST("/update/mobile", middlewares.AuthJWT(), uc.UpdatePhone)
 			usersGroup.POST("/update/password", middlewares.AuthJWT(), uc.UpdatePassword)
 			usersGroup.POST("/email/verificationCodes", middlewares.AuthJWT(), vcc.SendUsingEmail)
+			usersGroup.POST("/update/email", middlewares.AuthJWT(), uc.UpdateEmail)
 			usersGroup.POST("/avatar", middlewares.AuthJWT(), uc.UpdateAvatar)
 		}
 	}
