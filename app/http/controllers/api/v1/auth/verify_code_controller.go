@@ -34,14 +34,12 @@ func (vc *VerifyCodeController) SendUsingPhone(c *gin.Context) {
 // SendUsingEmail 发送 Email 验证码
 func (vc *VerifyCodeController) SendUsingEmail(c *gin.Context) {
 
-	// 1. 验证表单
 	request := requests.VerifyCodeEmailRequest{}
 	if ok := requests.Validate(c, &request, requests.VerifyCodeEmail); !ok {
 		return
 	}
 
-	// 2. 发送 SMS
-	err := verifycode.NewVerifyCode().SendEmail(request.Email)
+	err := verifycode.NewVerifyCode().SendEmail(request.NewEmail)
 	if err != nil {
 		response.Abort500(c, "发送 Email 验证码失败~")
 	} else {
