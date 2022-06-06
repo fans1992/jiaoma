@@ -85,8 +85,9 @@ func UserUpdateEmail(data interface{}, c *gin.Context) map[string][]string {
 }
 
 type UserUpdatePhoneRequest struct {
-	Mobile     string `json:"mobile,omitempty" valid:"mobile"`
-	VerifyCode string `json:"verify_code,omitempty" valid:"verify_code"`
+	Mobile    string `json:"mobile,omitempty" valid:"mobile"`
+	Code      string `json:"code,omitempty" valid:"code"`
+	NewMobile string `json:"new_mobile,omitempty" valid:"new_mobile"`
 }
 
 func UserUpdatePhone(data interface{}, c *gin.Context) map[string][]string {
@@ -97,62 +98,78 @@ func UserUpdatePhone(data interface{}, c *gin.Context) map[string][]string {
 		"mobile": []string{
 			"required",
 			"digits:11",
+			"in:" + currentUser.Mobile,
+		},
+		"code": []string{"required", "digits:6"},
+		"new_mobile": []string{
+			"required",
+			"digits:11",
 			"not_exists:users,mobile," + currentUser.GetStringID(),
 			"not_in:" + currentUser.Mobile,
 		},
-		"verify_code": []string{"required", "digits:6"},
 	}
 	messages := govalidator.MapData{
 		"mobile": []string{
 			"required:手机号为必填项，参数名称 phone",
 			"digits:手机号长度必须为 11 位的数字",
-			"not_exists:手机号已被占用",
-			"not_in:新的手机与老手机号一致",
+			"in:旧手机号不正确",
 		},
-		"verify_code": []string{
+		"code": []string{
 			"required:验证码答案必填",
 			"digits:验证码长度必须为 6 位的数字",
+		},
+		"new_mobile": []string{
+			"required:手机号为必填项，参数名称 phone",
+			"digits:手机号长度必须为 11 位的数字",
+			"not_exists:手机号已被占用",
+			"not_in:新的手机与老手机号一致",
 		},
 	}
 
 	errs := validate(data, rules, messages)
 	_data := data.(*UserUpdatePhoneRequest)
-	errs = validators.ValidateVerifyCode(_data.Mobile, _data.VerifyCode, errs)
+	errs = validators.ValidateVerifyCode(_data.NewMobile, _data.Code, errs)
 
 	return errs
 }
 
 type UserUpdatePasswordRequest struct {
-	Password           string `valid:"password" json:"password,omitempty"`
-	NewPassword        string `valid:"new_password" json:"new_password,omitempty"`
-	NewPasswordConfirm string `valid:"new_password_confirm" json:"new_password_confirm,omitempty"`
+	Mobile      string `json:"mobile,omitempty" valid:"mobile"`
+	Code        string `json:"code,omitempty" valid:"code"`
+	NewPassword string `valid:"new_password" json:"new_password,omitempty"`
 }
 
 func UserUpdatePassword(data interface{}, c *gin.Context) map[string][]string {
+	currentUser := auth.CurrentUser(c)
 	rules := govalidator.MapData{
-		"password":             []string{"required", "min:6"},
-		"new_password":         []string{"required", "min:6"},
-		"new_password_confirm": []string{"required", "min:6"},
+		"mobile": []string{
+			"required",
+			"digits:11",
+			"in:" + currentUser.Mobile,
+		},
+		"code":         []string{"required", "digits:6"},
+		"new_password": []string{"required", "min:6"},
 	}
 	messages := govalidator.MapData{
-		"password": []string{
-			"required:密码为必填项",
-			"min:密码长度需大于 6",
+		"mobile": []string{
+			"required:手机号为必填项，参数名称 phone",
+			"digits:手机号长度必须为 11 位的数字",
+			"in:旧手机号不正确",
+		},
+		"code": []string{
+			"required:验证码答案必填",
+			"digits:验证码长度必须为 6 位的数字",
 		},
 		"new_password": []string{
 			"required:密码为必填项",
 			"min:密码长度需大于 6",
-		},
-		"new_password_confirm": []string{
-			"required:确认密码框为必填项",
-			"min:确认密码长度需大于 6",
 		},
 	}
 
 	// 确保 comfirm 密码正确
 	errs := validate(data, rules, messages)
 	_data := data.(*UserUpdatePasswordRequest)
-	errs = validators.ValidatePasswordConfirm(_data.NewPassword, _data.NewPasswordConfirm, errs)
+	errs = validators.ValidateVerifyCode(_data.Mobile, _data.Code, errs)
 
 	return errs
 }
