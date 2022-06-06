@@ -33,6 +33,12 @@ func (ctrl *ContactsController) Show(c *gin.Context) {
 		response.Abort404(c)
 		return
 	}
+
+	if ok := policies.CanModifyContact(c, contactModel); !ok {
+		response.Abort403(c)
+		return
+	}
+
 	response.Data(c, contactModel)
 }
 

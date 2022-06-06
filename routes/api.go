@@ -78,6 +78,7 @@ func RegisterAPIRoutes(r *gin.Engine) {
 			contactGroup.PUT("/:id", middlewares.AuthJWT(), contact.Update)
 			contactGroup.DELETE("/:id", middlewares.AuthJWT(), contact.Delete)
 			contactGroup.GET("", middlewares.AuthJWT(), contact.Index)
+			contactGroup.GET("/:id", middlewares.AuthJWT(), contact.Show)
 		}
 	}
 }
