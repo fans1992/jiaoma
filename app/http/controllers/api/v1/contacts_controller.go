@@ -83,24 +83,24 @@ func (ctrl *ContactsController) Update(c *gin.Context) {
 	}
 }
 
-//func (ctrl *ContactsController) Delete(c *gin.Context) {
-//
-//    contactModel := contact.Get(c.Param("id"))
-//    if contactModel.ID == 0 {
-//        response.Abort404(c)
-//        return
-//    }
-//
-//    if ok := policies.CanModifyContact(c, contactModel); !ok {
-//        response.Abort403(c)
-//        return
-//    }
-//
-//    rowsAffected := contactModel.Delete()
-//    if rowsAffected > 0 {
-//        response.Success(c)
-//        return
-//    }
-//
-//    response.Abort500(c, "删除失败，请稍后尝试~")
-//}
+func (ctrl *ContactsController) Delete(c *gin.Context) {
+
+   contactModel := contact.Get(c.Param("id"))
+   if contactModel.ID == 0 {
+       response.Abort404(c)
+       return
+   }
+
+   if ok := policies.CanModifyContact(c, contactModel); !ok {
+       response.Abort403(c)
+       return
+   }
+
+   rowsAffected := contactModel.Delete()
+   if rowsAffected > 0 {
+       response.Success(c)
+       return
+   }
+
+   response.Abort500(c, "删除失败，请稍后尝试~")
+}
