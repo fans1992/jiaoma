@@ -14,20 +14,27 @@ type ContactsController struct {
 	BaseAPIController
 }
 
-//
-//func (ctrl *ContactsController) Index(c *gin.Context) {
-//    contacts := contact.All()
-//    response.Data(c, contacts)
-//}
+func (ctrl *ContactsController) Index(c *gin.Context) {
+	request := requests.PaginationRequest{}
+	if ok := requests.Validate(c, &request, requests.Pagination); !ok {
+		return
+	}
 
-//func (ctrl *ContactsController) Show(c *gin.Context) {
-//    contactModel := contact.Get(c.Param("id"))
-//    if contactModel.ID == 0 {
-//        response.Abort404(c)
-//        return
-//    }
-//    response.Data(c, contactModel)
-//}
+	data, pager := contact.Paginate(c, 10)
+	response.JSON(c, gin.H{
+		"data":  data,
+		"pager": pager,
+	})
+}
+
+func (ctrl *ContactsController) Show(c *gin.Context) {
+	contactModel := contact.Get(c.Param("id"))
+	if contactModel.ID == 0 {
+		response.Abort404(c)
+		return
+	}
+	response.Data(c, contactModel)
+}
 
 func (ctrl *ContactsController) Store(c *gin.Context) {
 
@@ -85,22 +92,22 @@ func (ctrl *ContactsController) Update(c *gin.Context) {
 
 func (ctrl *ContactsController) Delete(c *gin.Context) {
 
-   contactModel := contact.Get(c.Param("id"))
-   if contactModel.ID == 0 {
-       response.Abort404(c)
-       return
-   }
+	contactModel := contact.Get(c.Param("id"))
+	if contactModel.ID == 0 {
+		response.Abort404(c)
+		return
+	}
 
-   if ok := policies.CanModifyContact(c, contactModel); !ok {
-       response.Abort403(c)
-       return
-   }
+	if ok := policies.CanModifyContact(c, contactModel); !ok {
+		response.Abort403(c)
+		return
+	}
 
-   rowsAffected := contactModel.Delete()
-   if rowsAffected > 0 {
-       response.Success(c)
-       return
-   }
+	rowsAffected := contactModel.Delete()
+	if rowsAffected > 0 {
+		response.Success(c)
+		return
+	}
 
-   response.Abort500(c, "删除失败，请稍后尝试~")
+	response.Abort500(c, "删除失败，请稍后尝试~")
 }
