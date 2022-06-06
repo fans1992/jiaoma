@@ -60,5 +60,21 @@ func RegisterAPIRoutes(r *gin.Engine) {
 			usersGroup.POST("/update/email", middlewares.AuthJWT(), uc.UpdateEmail)
 			usersGroup.POST("/avatar", middlewares.AuthJWT(), uc.UpdateAvatar)
 		}
+
+		tpc := new(controllers.TopicsController)
+		tpcGroup := v1.Group("/topics")
+		{
+			tpcGroup.GET("", tpc.Index)
+			tpcGroup.POST("", middlewares.AuthJWT(), tpc.Store)
+			tpcGroup.PUT("/:id", middlewares.AuthJWT(), tpc.Update)
+			tpcGroup.DELETE("/:id", middlewares.AuthJWT(), tpc.Delete)
+			tpcGroup.GET("/:id", middlewares.AuthJWT(), tpc.Show)
+		}
+
+		contact := new(controllers.ContactsController)
+		contactGroup := v1.Group("/contacts")
+		{
+			contactGroup.POST("", middlewares.AuthJWT(), contact.Store)
+		}
 	}
 }
